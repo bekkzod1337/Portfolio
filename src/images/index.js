@@ -5,3 +5,7 @@ export { default as Background } from './Background.png';
 export { default as Youtube } from './Youtube-clone.png';
 export { default as Audiophile } from './Audiophile.png';
 export { default as Aymood } from './aymoood.png';
+export { default as Telegram } from './Telegram.png';
+export { default as Countries } from './Rest-countries.png';
+export { default as Coffee } from './Coffee.png';
+export { default as Hercules } from './Hercules.png';

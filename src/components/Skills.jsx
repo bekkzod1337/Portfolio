@@ -1,10 +1,45 @@
+"use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaExternalLinkAlt, FaGithub } from "react-icons/fa";
-import { SiTailwindcss, SiExpress, SiMongodb, SiTypescript, SiMysql, SiPostgresql } from "react-icons/si";
-import { Audiophile, Aymood, Background, Boldo, Card, Herculas, Youtube } from "../images";
+import {
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaGithub,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
+import {
+  SiTailwindcss,
+  SiExpress,
+  SiMongodb,
+  SiTypescript,
+  SiMysql,
+  SiPostgresql,
+} from "react-icons/si";
+import {
+  Audiophile,
+  Aymood,
+  Background,
+  Boldo,
+  Card,
+  Coffee,
+  Countries,
+  Herculas,
+  Hercules,
+  Telegram,
+  Youtube,
+} from "../images";
 
 const projects = [
+  {
+    name: "Hercules",
+    category: "Real Project, TeamWork",
+    image: Hercules,
+    demoLink: "https://www.hercules.uz/ru",
+    githubLink: "github.com/",
+  },
   {
     name: "Aymood",
     category: "Real Project",
@@ -13,8 +48,29 @@ const projects = [
     githubLink: "https://github.com/bekzod1337/AyMood.git",
   },
   {
+    name: "Rest-Countries",
+    category: "Figma Project",
+    image: Countries,
+    demoLink: "https://rest-countries-bekzod.vercel.app/",
+    githubLink: "https://github.com/bekkzod1337/rest-countries-NEXT.git",
+  },
+  {
+    name: "Telegram clone",
+    category: "Demo Project",
+    image: Telegram,
+    demoLink: "https://telegram-clone-bekzod.vercel.app/",
+    githubLink: "https://github.com/bekkzod1337/telegram-clone.git",
+  },
+  {
+    name: "Coffee Shop",
+    category: "Figma Project",
+    image: Coffee,
+    demoLink: "https://coffee-shop-bekzod.vercel.app/",
+    githubLink: "https://github.com/bekkzod1337/Coffee-Shop-NEXT.git",
+  },
+  {
     name: "Boldo",
-    category: "Teamwork",
+    category: "Teamwork, Figma Project",
     image: Boldo,
     demoLink: "https://boldo-figma.vercel.app/",
     githubLink: "https://github.com/mrphoenixUz/Boldo---Figma.git",
@@ -65,34 +121,51 @@ const skills = [
 
 const Skills = () => {
   return (
-    <div className="py-3 px-5 mx-auto">
+    <div className="py-16 px-6 md:px-20 bg-none" id="projects">
+      {/* Projects */}
       <motion.h2
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-4xl font-extrabold text-center mb-10 text-gray-300"
+        className="text-4xl font-extrabold text-center mb-12 text-gray-100"
       >
-        My Projects 
+        My Projects
       </motion.h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all"
+            className="bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all"
           >
-            <img src={project.image} alt={project.name} className="w-full h-56 object-cover" />
+            <img
+              src={project.image}
+              alt={project.name}
+              className="w-full h-[220px] object-cover"
+            />
             <div className="p-5">
-              <h3 className="text-xl font-semibold text-white">{project.name}</h3>
+              <h3 className="text-xl font-semibold text-white">
+                {project.name}
+              </h3>
               <p className="text-sm text-gray-400">{project.category}</p>
-              <div className="mt-4 flex gap-4">
-                <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-blue-500 rounded-lg bg-blue-900 text-blue-400 hover:bg-blue-800 hover:text-white transition">
+              <div className="mt-4 flex flex-wrap gap-4">
+                <a
+                  href={project.demoLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 text-sm border border-blue-500 rounded-md text-blue-400 hover:bg-blue-600 hover:text-white transition"
+                >
                   <FaExternalLinkAlt /> Live Demo
                 </a>
-                <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 border border-gray-500 rounded-lg bg-gray-700 text-gray-400 hover:bg-gray-600 hover:text-white transition">
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-4 py-2 text-sm border border-gray-500 rounded-md text-gray-300 hover:bg-gray-600 hover:text-white transition"
+                >
                   <FaGithub /> GitHub
                 </a>
               </div>
@@ -101,16 +174,18 @@ const Skills = () => {
         ))}
       </div>
 
+      {/* Skills */}
       <motion.h2
+        id="skills"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="text-4xl font-extrabold text-center mt-16 mb-10 text-gray-300"
+        className="text-4xl font-extrabold text-center mt-24 mb-12 text-gray-100"
       >
         My Skills
       </motion.h2>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 justify-items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 justify-items-center">
         {skills.map((skill, index) => (
           <motion.div
             key={index}
@@ -125,7 +200,12 @@ const Skills = () => {
             >
               {skill.icon}
             </motion.div>
-            <p className="mt-2 text-lg font-medium text-gray-200">{skill.name}</p>
+            <motion.p
+              whileHover={{ scale: 1.05 }}
+              className="mt-2 text-lg font-medium text-gray-300"
+            >
+              {skill.name}
+            </motion.p>
           </motion.div>
         ))}
       </div>
