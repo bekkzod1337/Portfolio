@@ -80,7 +80,7 @@ const Home = () => {
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-center sm:items-start mt-8">
           <div className="flex gap-4 text-2xl">
             <motion.a 
-              href="https://t.me/bekzod1337" 
+              href="https://t.me/iam_brand" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="Telegram" 
@@ -102,7 +102,7 @@ const Home = () => {
               <FaInstagram />
             </motion.a>
             <motion.a 
-              href="https://github.com/bekzod1337" 
+              href="https://github.com/bekkzod1337" 
               target="_blank" 
               rel="noopener noreferrer" 
               aria-label="GitHub" 
