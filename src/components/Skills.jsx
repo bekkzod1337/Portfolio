@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaHtml5,
@@ -9,7 +9,7 @@ import {
   FaNodeJs,
   FaGithub,
   FaExternalLinkAlt,
-  FaUikit,
+  FaSearch,
 } from "react-icons/fa";
 import {
   SiTailwindcss,
@@ -159,20 +159,51 @@ const skills = [
 ];
 
 const Skills = () => {
-  return (
-    <div className="py-20 px-6 md:px-20 bg-none" id="projects">
-      {/* Projects Section */}
-      <motion.h2
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-4xl md:text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300"
-      >
-        Featured Projects
-      </motion.h2>
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  const filteredProjects = projects.filter(project =>
+    project.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    project.category.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {projects.map((project, index) => (
+  return (
+    <div className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-20 bg-none justify-center ml-auto mr-auto text-center">
+      {/* Projects Section */}
+      <div id="projects" className="">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="inline-block mb-8 sm:mb-12 md:mb-16 w-full"
+        >
+          <div className="glass rounded-xl mx-auto w-fit px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 shadow-xl border border-white/5">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300">
+              Featured Projects
+            </h2>
+          </div>
+        </motion.div>
+
+        {/* Search Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="flex justify-center mb-6 sm:mb-8"
+        >
+          <div className="relative w-full sm:w-80">
+            <FaSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-blue-300 text-lg z-10" />
+            <input
+              type="text"
+              placeholder="Search projects..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-4 py-2.5 sm:py-3 rounded-lg glass border border-white/10 text-white placeholder-white/40 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/30 transition"
+            />
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+          {filteredProjects.map((project, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -184,19 +215,19 @@ const Skills = () => {
               src={project.image}
               alt={project.name}
               loading="lazy"
-              className="w-full h-[220px] object-cover group-hover:scale-105 transition-transform duration-300 img-shadow"
+              className="w-full h-[160px] sm:h-[200px] md:h-[220px] object-cover group-hover:scale-105 transition-transform duration-300 img-shadow"
             />
-            <div className="p-5">
-              <h3 className="text-xl font-semibold text-white">
+            <div className="p-3 sm:p-4 md:p-5">
+              <h3 className="text-lg sm:text-xl font-semibold text-white">
                 {project.name}
               </h3>
-              <p className="text-sm text-blue-300/80">{project.category}</p>
-              <div className="mt-4 flex flex-wrap gap-4">
+              <p className="text-xs sm:text-sm text-blue-300/80">{project.category}</p>
+              <div className="mt-3 sm:mt-4 flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-4">
                 <a
                   href={project.demoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 text-sm bg-gradient-to-r from-blue-500 to-indigo-600 rounded-md text-white hover:opacity-90 transition font-medium"
+                  className="flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm bg-gradient-to-r from-blue-500 to-indigo-600 rounded-md text-white hover:opacity-90 transition font-medium"
                 >
                   <FaExternalLinkAlt /> Live Demo
                 </a>
@@ -204,7 +235,7 @@ const Skills = () => {
                   href={project.githubLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 text-sm border border-white/20 rounded-md text-white hover:bg-white/5 transition font-medium"
+                  className="flex items-center justify-center sm:justify-start gap-2 px-3 sm:px-4 py-2 text-xs sm:text-sm border border-white/20 rounded-md text-white hover:bg-white/5 transition font-medium"
                 >
                   <FaGithub /> GitHub
                 </a>
@@ -213,41 +244,47 @@ const Skills = () => {
           </motion.div>
         ))}
       </div>
+      </div>
 
       {/* Skills Section */}
-      <motion.h2
-        id="skills"
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-4xl md:text-5xl font-extrabold text-center mt-24 mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300"
-      >
-        Technical Skills
-      </motion.h2>
+      <div className="" id="skills">
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="inline-block mt-16 sm:mt-20 md:mt-24 mb-8 sm:mb-12 md:mb-16 w-full"
+        >
+          <div className="glass rounded-xl mx-auto w-fit px-6 sm:px-8 md:px-10 py-3 sm:py-4 md:py-5 shadow-xl border border-white/5">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300">
+              Technical Skills
+            </h2>
+          </div>
+        </motion.div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-10 justify-items-center">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
         {skills.map((skill, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="flex flex-col items-center gap-2"
+            className="flex flex-col items-center justify-center gap-2"
           >
             <motion.div
               whileHover={{ scale: 1.1, rotate: 5 }}
-              className={`text-5xl p-6 rounded-xl glass ${skill.color} shadow-lg hover:shadow-xl transition-shadow`}
+              className={`text-3xl sm:text-4xl md:text-5xl p-3 sm:p-4 md:p-6 rounded-xl glass ${skill.color} shadow-lg hover:shadow-xl transition-shadow`}
             >
               {skill.icon}
             </motion.div>
             <motion.p
               whileHover={{ scale: 1.05 }}
-              className="mt-2 text-lg font-medium text-white"
+              className="mt-2 text-sm sm:text-lg font-medium text-white text-center"
             >
               {skill.name}
             </motion.p>
           </motion.div>
         ))}
+      </div>
       </div>
     </div>
   );

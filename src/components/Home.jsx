@@ -55,30 +55,30 @@ const Home = () => {
   };
 
   return (
-    <section className="flex flex-col-reverse lg:flex-row items-center justify-center min-h-screen px-6 lg:px-20 bg-none text-white gap-10 lg:gap-20 w-full">
+    <section className="flex flex-col-reverse lg:flex-row items-center justify-center min-h-screen px-4 sm:px-6 lg:px-20 bg-none text-white gap-8 sm:gap-10 lg:gap-20 w-full">
       {/* Text Content */}
       <motion.div 
-        className="flex flex-col items-center lg:items-start text-center lg:text-left mt-10 lg:mt-0 max-w-2xl"
+        className="flex flex-col items-center lg:items-start text-center lg:text-left mt-8 sm:mt-10 lg:mt-0 max-w-2xl"
         variants={containerVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
       >
-        <motion.h1 variants={itemVariants} className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+        <motion.h1 variants={itemVariants} className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
           Hello, I'm <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-300 via-indigo-300 to-purple-300">Bekzod</span>
         </motion.h1>
 
-        <motion.h2 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl font-semibold mt-3 text-blue-300 flex items-center gap-2">
+        <motion.h2 variants={itemVariants} className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mt-2 sm:mt-3 text-blue-300 flex items-center justify-center lg:justify-start gap-2">
           {text}
           <span className="animate-blink">|</span>
         </motion.h2>
 
-        <motion.p variants={itemVariants} className="text-white mt-6 text-base sm:text-lg leading-relaxed">
+        <motion.p variants={itemVariants} className="text-white mt-4 sm:mt-6 text-sm sm:text-base md:text-lg leading-relaxed">
           I build modern, scalable web applications with a focus on performance, accessibility and delightful user experiences. Currently studying at TUIT and crafting full-stack projects.
         </motion.p>
 
         {/* Social Icons & CTA */}
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 items-center sm:items-start mt-8">
-          <div className="flex gap-4 text-2xl">
+        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center lg:justify-start mt-6 sm:mt-8 w-full">
+          <div className="flex gap-4 sm:gap-5 text-xl sm:text-2xl">
             <motion.a 
               href="https://t.me/iam_brand" 
               target="_blank" 
@@ -114,15 +114,19 @@ const Home = () => {
             </motion.a>
           </div>
 
-          <div className="flex gap-4">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <div className="flex gap-2 sm:gap-4 flex-col sm:flex-row w-full sm:w-auto">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="flex-1 sm:flex-none">
               <Button 
                 variant="contained" 
                 size="large" 
                 onClick={handleDownload} 
                 sx={{ 
                   textTransform: 'none', 
-                  fontWeight: 700, 
+                  fontWeight: 700,
+                  fontSize: { xs: '0.875rem', sm: '1rem' },
+                  py: { xs: 1, sm: 1.2 },
+                  px: { xs: 2, sm: 3 },
+                  width: { xs: '100%', sm: 'auto' },
                   bgcolor: 'linear-gradient(90deg,#3b82f6,#7c3aed)', 
                   boxShadow: '0 8px 30px rgba(99,102,241,0.18)',
                   transition: 'all 0.3s ease'
@@ -133,7 +137,7 @@ const Home = () => {
             </motion.div>
             <motion.a 
               href="#contact" 
-              className="inline-flex items-center justify-center px-5 py-3 rounded-md bg-white/6 hover:bg-white/8 transition text-sm font-medium"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center px-4 sm:px-5 py-2.5 sm:py-3 rounded-md bg-white/6 hover:bg-white/8 transition text-xs sm:text-sm font-medium"
               whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,255,255,0.1)' }}
               whileTap={{ scale: 0.95 }}
             >
@@ -145,15 +149,14 @@ const Home = () => {
 
       {/* Profile Card - Right Side */}
       <motion.div 
-        className="flex items-center justify-center order-first lg:order-last"
+        className="flex items-center justify-center order-first lg:order-last flex-shrink-0"
         initial={{ opacity: 0, scale: 0.8, x: 60 }}
         animate={isVisible ? { opacity: 1, scale: 1, x: 0 } : { opacity: 0, scale: 0.8, x: 60 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
         <motion.div 
-          className="relative rounded-2xl w-56 h-72 md:w-80 md:h-96 overflow-hidden shadow-2xl border-2 border-white/10"
-          whileHover={{ boxShadow: "0 20px 60px rgba(59,130,246,0.3)" }}
-          transition={{ duration: 0.3 }}
+          className="relative rounded-2xl w-48 h-64 sm:w-56 sm:h-72 md:w-72 md:h-96 lg:w-80 lg:h-96 overflow-hidden border-2 border-white/10"
+          style={{ boxShadow: "0 20px 60px rgba(59,130,246,0.3)" }}
         >
           <img src={profileImage} alt="Bekzod's Profile" className="object-cover w-full h-full img-shadow" />
           <div className="absolute inset-0 rounded-2xl ring-2 ring-blue-500/20 pointer-events-none"></div>
